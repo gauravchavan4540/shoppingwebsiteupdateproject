@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row">
+    <h2>Welcome, {{name}}</h2>
+    <div class="col-md-12  d-flex p-1">
+      <button class="btn btn-primary mx-2" (click)="changeWhatToShow(1)">Product</button>
+      <!-- <button class="btn btn-primary mx-2" (click)="changeWhatToShow(2)">Orders</button> -->
+      <div class="dropdown mx-2">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">Orders</button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item bg-danger" (click)="sort(0)">Active</a>
+          </li>
+          <li>
+            <a class="dropdown-item bg-warning" (click)="sort(1)">Pending</a>
+          </li>
+          <li>
+            <a class="dropdown-item bg-success" (click)="sort(2)">Resolved</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-12" *ngIf="whatToShow == 1">
+      <app-product [products]="products" [categories]="categories"></app-product>
+    </div>
+    <div class="col-md-12" *ngIf="whatToShow == 2">
+      <app-orders [orders]="orders"></app-orders>
+    </div>
+  </div>
+</div>

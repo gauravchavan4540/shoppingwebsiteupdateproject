@@ -1,0 +1,158 @@
+<div class="container mt-4">
+  <!-- Filters Section -->
+  <div class="row mb-3">
+    <div class="col-md-4 mb-3">
+      <label for="category" class="form-label">Category:</label>
+      <select id="category" [(ngModel)]="catid" name="category" class="form-select">
+        <option value="0">All Categories</option>
+        <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Min Price:</label>
+      <input type="number" [(ngModel)]="minprice" class="form-control">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Max Price:</label>
+      <input type="number" [(ngModel)]="maxprice" class="form-control">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Min Rating:</label>
+      <input type="number" [(ngModel)]="minrating" class="form-control">
+    </div>
+    <div class="col-md-6 d-flex align-items-end mb-3">
+      <button [disabled]="isLoading" (click)="loadProduct()" class="btn btn-primary w-100">Load Products</button>
+    </div>
+    <div *ngIf="isLoading" class="spinner-overlay">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <!-- <div class="double-bounce2"></div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let p of products; let i = index">
+      <div class="card h-100">
+        <div [attr.id]="'carouselExample' + i" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item" [class.active]="imageIndex === 0"
+              *ngFor="let imageUrl of p.imageUrls; let imageIndex = index" loading="lazy">
+              <img [src]="getSanitizedUrl(imageUrl)" alt="Product Image" class="product-image">
+            </div>
+            <span class="badge save-badge">Save {{ p.discount}}%</span>
+          </div>
+          <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ p.name }}</h5>
+
+          <!-- Price and Discounted Price -->
+          <div class="price-container">
+            <p class="price">
+              <span class="original-price">₹{{ p.price | number:'1.2-2'}}</span>
+              <span class="discounted-price">₹{{ calculateDiscountedAmount(p)
+                | number:'1.2-2'}}</span>
+            </p>
+          </div>
+
+          <p class="card-text">Description:{{ p.description }}</p>
+          <p class="card-text">
+            <ng-container *ngIf="p.quantity === 0">Not available</ng-container>
+            <ng-container *ngIf="p.quantity > 0 && p.quantity < 5">Limited
+              stock</ng-container>
+            <ng-container *ngIf="p.quantity >= 5">Available</ng-container>
+          </p>
+          <p class="card-text" *ngIf="p.days <= 5"><strong>Recently
+              added</strong></p>
+
+          <div class="rating">
+            <p class="card-text"> Rating:</p>
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+              <span [ngClass]="{
+                'filled': star <= p.rating, 
+                'empty': star > p.rating
+              }">&#9733;</span>
+            </ng-container>
+          </div>
+
+          <label for="rating" class="form-label"> Give Rating:</label>
+          <select id="rating" [(ngModel)]="p.ratingChange" (change)="printRating(p)" class="form-select mb-2">
+            <!-- <option [value]="0">0 Star</option> -->
+            <option [value]="1">1 Star</option>
+            <option [value]="2">2 Stars</option>
+            <option [value]="3">3 Stars</option>
+            <option [value]="4">4 Stars</option>
+            <option [value]="5">5 Stars</option>
+          </select>
+
+          <button [disabled]="isLoading" (click)="addToCart(p)" class="btn btn-success w-100">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Section -->
+  <div class="row">
+    <div class="col-12">
+      <button (click)="loadCartProducts()" class="btn btn-primary w-100 mb-4">View Cart</button>
+      <div *ngIf="showCart" class="mt-4">
+        <h2>Your Cart</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4" *ngFor="let item of cartItems; let i = index">
+            <div class="card h-100">
+              <div [attr.id]="'carouselExample1' + i" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item" *ngFor="let imageUrl of item.imageUrls; let imageIndex = index"
+                    [ngClass]="{'active': imageIndex === 0}">
+                    <img [src]="getSanitizedUrl(imageUrl)" alt="Product Image" class="product-image">
+                  </div>
+                  <span class="badge save-badge">Save {{ item.discount}}%</span>
+                </div>
+                <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample1' + i"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample1' + i"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text"><strong>Price:</strong> ₹{{ item.price| number:'1.2-2'}}</p>
+                <p class="card-text"><strong>Description:</strong> {{
+                  item.description }}</p>
+                <p class="card-text"><strong>Quantity:</strong></p>
+                <input type="number" [(ngModel)]="item.newQuantity" (ngModelChange)="handleQuantityChange(item)"
+                  class="form-control mb-2" min="1">
+                <p class="card-text"><strong>Amount after discount:</strong>
+                  ₹{{calculateDiscountedAmount(item) * (item.newQuantity || 1) | number:'1.2-2'}}</p>
+                <button [disabled]="isLoading" (click)="removeItemFromCart(item.id)" class="btn btn-danger w-100">Remove
+                  from Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <h4>Total Amount: ₹{{ totalAmount | number:'1.2-2'}}</h4>
+        </div>
+        <button (click)="showCart = false" class="btn btn-warning w-100 mb-2">Back to Products</button>
+        <button [disabled]="isLoading" (click)="placeOrder()" class="btn btn-success w-100">Place Order</button>
+      </div>
+    </div>
+  </div>
+</div>

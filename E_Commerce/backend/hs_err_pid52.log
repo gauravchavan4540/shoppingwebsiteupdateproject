@@ -1,0 +1,231 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 62914560 bytes for G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3613), pid=52, tid=7292
+#
+# JRE version:  (17.0.10+7) (build )
+# Java VM: OpenJDK 64-Bit Server VM (17.0.10+7, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dmaven.home=EMBEDDED -Dclassworlds.conf=C:\Users\chinc\Documents\workspace-spring-tool-suite-4-4.22.0.RELEASE\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5133142267149416609.tmp -Dmaven.multiModuleProjectDirectory=C:\Users\chinc\Documents\workspace-spring-tool-suite-4-4.22.0.RELEASE\AmazonClone -Dm2e.build.project.data.socket.port=54439 -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages org.codehaus.plexus.classworlds.launcher.Launcher -Ppom.xml -B -Dstyle.color=always clean
+
+Host: 11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz, 4 cores, 3G,  Windows 11 , 64 bit Build 22621 (10.0.22621.3958)
+Time: Sat Aug 10 19:04:18 2024 India Standard Time elapsed time: 0.030449 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000221e3f4d180):  JavaThread "Unknown thread" [_thread_in_vm, id=7292, stack(0x0000005592400000,0x0000005592500000)]
+
+Stack: [0x0000005592400000,0x0000005592500000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x67d2c9]
+V  [jvm.dll+0x834afa]
+V  [jvm.dll+0x8365be]
+V  [jvm.dll+0x836c23]
+V  [jvm.dll+0x2477ff]
+V  [jvm.dll+0x67a109]
+V  [jvm.dll+0x66eb7a]
+V  [jvm.dll+0x30764b]
+V  [jvm.dll+0x30eaf6]
+V  [jvm.dll+0x35e83e]
+V  [jvm.dll+0x35ea6f]
+V  [jvm.dll+0x2de248]
+V  [jvm.dll+0x2df1b4]
+V  [jvm.dll+0x806361]
+V  [jvm.dll+0x36c6f1]
+V  [jvm.dll+0x7e4e06]
+V  [jvm.dll+0x3eff3f]
+V  [jvm.dll+0x3f1b71]
+C  [jli.dll+0x528f]
+C  [ucrtbase.dll+0x29333]
+C  [KERNEL32.DLL+0x1257d]
+C  [ntdll.dll+0x5af28]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffa8ad8ee98, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00000221e3f88af0 GCTaskThread "GC Thread#0" [stack: 0x0000005592500000,0x0000005592600000] [id=15324]
+  0x00000221e3f91770 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000005592600000,0x0000005592700000] [id=628]
+  0x00000221e3f920a0 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000005592700000,0x0000005592800000] [id=14448]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa8a54ec87]
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000221e3f49310] Heap_lock - owner thread: 0x00000221e3f4d180
+
+Heap address: 0x00000000c4c00000, size: 948 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+<Empty>
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x00000000c4c00000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa8a936fb9]
+
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.020 Loaded shared library C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff656860000 - 0x00007ff65686e000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\javaw.exe
+0x00007ffb0d270000 - 0x00007ffb0d487000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffb0cf60000 - 0x00007ffb0d024000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffb0a5c0000 - 0x00007ffb0a96d000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffb0ace0000 - 0x00007ffb0adf1000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffaed920000 - 0x00007ffaed93b000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\VCRUNTIME140.dll
+0x00007ffaee930000 - 0x00007ffaee947000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\jli.dll
+0x00007ffb0b7b0000 - 0x00007ffb0b95e000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffb0a590000 - 0x00007ffb0a5b6000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffaf3ca0000 - 0x00007ffaf3f33000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.3672_none_2713b9d173822955\COMCTL32.dll
+0x00007ffb0b960000 - 0x00007ffb0b989000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffb0ab50000 - 0x00007ffb0ac69000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffb0b400000 - 0x00007ffb0b4a7000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffb0a9f0000 - 0x00007ffb0aa8a000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffb0b150000 - 0x00007ffb0b181000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffb05840000 - 0x00007ffb0584c000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\vcruntime140_1.dll
+0x00007ffad5a50000 - 0x00007ffad5add000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\msvcp140.dll
+0x00007ffa8a260000 - 0x00007ffa8aec2000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\server\jvm.dll
+0x00007ffb0b990000 - 0x00007ffb0ba42000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffb0b690000 - 0x00007ffb0b739000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffb0ae00000 - 0x00007ffb0ae28000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007ffb0b030000 - 0x00007ffb0b144000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffac9680000 - 0x00007ffac9689000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffb0a450000 - 0x00007ffb0a49d000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffb0afb0000 - 0x00007ffb0b021000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffb00a70000 - 0x00007ffb00a7a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffb02cf0000 - 0x00007ffb02d24000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffb0a380000 - 0x00007ffb0a393000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffb09590000 - 0x00007ffb095a8000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffb03e30000 - 0x00007ffb03e3a000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\jimage.dll
+0x00007ffb07ef0000 - 0x00007ffb08122000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffb0c9c0000 - 0x00007ffb0cd4d000 	C:\WINDOWS\System32\combase.dll
+0x00007ffb0b5b0000 - 0x00007ffb0b687000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffaf4060000 - 0x00007ffaf4092000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffb0a970000 - 0x00007ffb0a9eb000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffae8dd0000 - 0x00007ffae8df5000 	C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.3672_none_2713b9d173822955;C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre\bin\server
+
+VM Arguments:
+jvm_args: -Dmaven.home=EMBEDDED -Dclassworlds.conf=C:\Users\chinc\Documents\workspace-spring-tool-suite-4-4.22.0.RELEASE\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5133142267149416609.tmp -Dmaven.multiModuleProjectDirectory=C:\Users\chinc\Documents\workspace-spring-tool-suite-4-4.22.0.RELEASE\AmazonClone -Dm2e.build.project.data.socket.port=54439 -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages 
+java_command: org.codehaus.plexus.classworlds.launcher.Launcher -Ppom.xml -B -Dstyle.color=always clean
+java_class_path (initial): C:\Users\chinc\Downloads\sts-4.22.0.RELEASE\plugins\org.eclipse.m2e.maven.runtime_3.9.600.20231203-1234\jars\plexus-classworlds-2.7.0.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 62914560                                  {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 994050048                                 {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5832780                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122912730                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122912730                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool ShowCodeDetailsInExceptionMessages       = true                                   {manageable} {command line}
+   size_t SoftMaxHeapSize                          = 994050048                              {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21
+PATH=C:/Users/chinc/Downloads/sts-4.22.0.RELEASE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143/jre/bin/server;C:/Users/chinc/Downloads/sts-4.22.0.RELEASE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143/jre/bin;C:\Users\chinc\Downloads\apache-maven-3.9.7-bin\apache-maven-3.9.7\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\heroku;C:\Program Files\heroku\bin\heroku.cmd;C:\Program Files\Heroku;C:\Users\chinc\AppData\Roaming\Python\Python312\Scripts;C:\Users\chinc\AppData\Local\Programs\Python\Python312\;C:\Users\chinc\AppData\Local\Programs\Python\Python312\Scripts\;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Program Files\Amazon\AWSCLIV2\;C:\Users\chinc\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\chinc\AppData\Local\Programs\Python\Python312\;C:\Program Files\Java\jdk-21\bin;C:\Program Files\heroku\bin;C:\Program Files\Heroku;C:\Program Files\heroku;C:\Users\chinc\AppData\Roaming\Python\Python312\Scripts;C:\Users\chinc\AppData\Local\Programs\Python\Python312\python.exe;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\;C:\Program Files\nodejs;C:\Users\chinc\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\chinc\AppData\Roaming\npm;C:\Users\chinc\Downloads\sts-4.22.0.RELEASE;
+USERNAME=chinc
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+TMP=C:\WINDOWS\TEMP
+TEMP=C:\Users\chinc\AppData\Local\Temp
+
+
+
+Periodic native trim disabled
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.3958)
+OS uptime: 0 days 1:22 hours
+Hyper-V role detected
+
+CPU: total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 140 stepping 1 microcode 0xa6, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, avx512f, avx512dq, avx512cd, avx512bw, avx512vl, sha, fma, vzeroupper, avx512_vpopcntdq, avx512_vpclmulqdq, avx512_vaes, avx512_vnni, clflush, clflushopt, clwb, avx512_vbmi2, avx512_vbmi, hv
+Processor Information for all 4 processors :
+  Max Mhz: 2995, Current Mhz: 2995, Mhz Limit: 2995
+
+Memory: 4k page, system-wide physical 3790M (245M free)
+TotalPageFile size 15566M (AvailPageFile size 46M)
+current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
+current process commit charge ("private bytes"): 51M, peak: 111M
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.10+7) for windows-amd64 JRE (17.0.10+7), built on Jan 16 2024 23:25:11 by "admin" with MS VC++ 16.10 / 16.11 (VS2019)
+
+END.
